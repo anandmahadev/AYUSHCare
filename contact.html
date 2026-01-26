@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Contact AYUSHCare - Request a demo, book a consultation, or get in touch with our team for support and inquiries.">
+    <title>Contact & Demo - AYUSHCare</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/contact.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">⚕</span>
+                    <span class="logo-text">AYUSHCare</span>
+                </a>
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="practitioners.html" class="nav-link">For Practitioners</a>
+                    <a href="patients.html" class="nav-link">For Patients</a>
+                    <a href="specialities.html" class="nav-link">Specialities</a>
+                    <a href="technology.html" class="nav-link">Technology</a>
+                    <a href="contact.html" class="nav-link active">Contact</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="dashboard.html" class="btn btn-text">Sign In</a>
+                    <a href="contact.html" class="btn btn-primary">Request Demo</a>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1 class="page-title">Get in Touch</h1>
+                <p class="page-subtitle">Request a personalized demo or contact our team for any inquiries.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="container">
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form-wrapper">
+                    <div class="form-header">
+                        <h2 class="form-title">Request a Demo</h2>
+                        <p class="form-description">Fill out the form below and our team will get back to you within 24
+                            hours.</p>
+                    </div>
+
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName" class="form-label">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" class="form-label">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" class="form-input" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="userType" class="form-label">I am a *</label>
+                            <select id="userType" name="userType" class="form-select" required>
+                                <option value="">Select an option</option>
+                                <option value="practitioner">AYUSH Practitioner</option>
+                                <option value="patient">Patient</option>
+                                <option value="clinic">Clinic Administrator</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="speciality" class="form-label">Speciality (if practitioner)</label>
+                            <select id="speciality" name="speciality" class="form-select">
+                                <option value="">Select speciality</option>
+                                <option value="ayurveda">Ayurveda</option>
+                                <option value="yoga">Yoga & Naturopathy</option>
+                                <option value="unani">Unani</option>
+                                <option value="siddha">Siddha</option>
+                                <option value="homeopathy">Homeopathy</option>
+                                <option value="multiple">Multiple</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-textarea" rows="4"
+                                placeholder="Tell us about your requirements..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="consent" required>
+                                <span>I agree to receive communications from AYUSHCare and accept the privacy
+                                    policy.</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-large btn-primary" style="width: 100%;">Submit
+                            Request</button>
+                    </form>
+
+                    <div class="form-success" id="formSuccess">
+                        <div class="success-icon">✓</div>
+                        <h3 class="success-title">Request Submitted Successfully!</h3>
+                        <p class="success-message">Thank you for your interest in AYUSHCare. Our team will contact you
+                            within 24 hours.</p>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="contact-info">
+                    <div class="info-card">
+                        <div class="info-icon">📧</div>
+                        <h3 class="info-title">Email Us</h3>
+                        <p class="info-content">support@ayushcare.com</p>
+                        <p class="info-content">sales@ayushcare.com</p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">📞</div>
+                        <h3 class="info-title">Call Us</h3>
+                        <p class="info-content">+91 1800-AYUSH-CARE</p>
+                        <p class="info-meta">Mon-Fri: 9:00 AM - 6:00 PM IST</p>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">💬</div>
+                        <h3 class="info-title">Live Chat</h3>
+                        <p class="info-content">Available 24/7 for support</p>
+                        <button class="btn btn-secondary" style="margin-top: var(--spacing-md);">Start Chat</button>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">📍</div>
+                        <h3 class="info-title">Office</h3>
+                        <p class="info-content">Ministry of AYUSH Technology Hub<br>New Delhi, India</p>
+                    </div>
+
+                    <div class="info-card highlight">
+                        <h3 class="info-title">Quick Links</h3>
+                        <div class="quick-links">
+                            <a href="dashboard.html" class="quick-link">Access Dashboard →</a>
+                            <a href="practitioners.html" class="quick-link">For Practitioners →</a>
+                            <a href="patients.html" class="quick-link">For Patients →</a>
+                            <a href="technology.html" class="quick-link">Technology →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section section-gray">
+        <div class="container">
+            <div class="section-header center">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3 class="faq-question">How long does it take to get started?</h3>
+                    <p class="faq-answer">You can set up your practice profile and start using AYUSHCare within 24 hours
+                        of signing up. Our onboarding team will guide you through the process.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Is my patient data secure?</h3>
+                    <p class="faq-answer">Yes. We use bank-level encryption, are HIPAA compliant, and conduct regular
+                        third-party security audits to ensure your data is protected.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Can I use AYUSHCare on mobile devices?</h3>
+                    <p class="faq-answer">Absolutely. AYUSHCare is fully responsive and works seamlessly on smartphones,
+                        tablets, and desktop computers.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">What kind of support do you provide?</h3>
+                    <p class="faq-answer">We offer 24/7 customer support via email, phone, and live chat. Plus dedicated
+                        onboarding assistance and regular training webinars.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Do you offer a free trial?</h3>
+                    <p class="faq-answer">Yes. We offer a 14-day free trial with full access to all features. No credit
+                        card required.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Can I integrate with my existing systems?</h3>
+                    <p class="faq-answer">Yes. AYUSHCare offers integrations with popular calendar apps, payment
+                        gateways, lab systems, and provides RESTful APIs for custom integrations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">⚕</span>
+                        <span class="logo-text">AYUSHCare</span>
+                    </div>
+                    <p class="footer-description">Professional digital platform for modern AYUSH practices.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="practitioners.html">For Practitioners</a></li>
+                        <li><a href="patients.html">For Patients</a></li>
+                        <li><a href="specialities.html">Specialities</a></li>
+                        <li><a href="technology.html">Technology</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Request Demo</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="dashboard.html">Sign In</a></li>
+                        <li><a href="#">System Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AYUSHCare. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/contact.js"></script>
+</body>
+
+</html>

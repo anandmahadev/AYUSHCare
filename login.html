@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - AYUSHCare</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        body {
+            background-color: var(--color-gray-50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 420px;
+            padding: var(--spacing-xl);
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .auth-logo {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--spacing-sm);
+            display: block;
+        }
+
+        .auth-title {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-gray-900);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-gray-700);
+            font-size: var(--font-size-sm);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--color-gray-300);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            transition: all var(--transition-base);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+        }
+
+        .auth-footer {
+            margin-top: var(--spacing-xl);
+            text-align: center;
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-600);
+        }
+
+        .auth-toggle {
+            color: var(--color-primary);
+            cursor: pointer;
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .error-message {
+            background-color: #fee2e2;
+            color: #b91c1c;
+            padding: var(--spacing-sm);
+            border-radius: var(--radius-sm);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--spacing-lg);
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="auth-container">
+        <div class="auth-header">
+            <a href="index.html" class="auth-logo" style="text-decoration: none;">⚕ AYUSHCare</a>
+            <h1 class="auth-title" id="pageTitle">Sign In</h1>
+            <p style="color: var(--color-gray-500); margin-top: var(--spacing-xs);">Access your practice dashboard</p>
+        </div>
+
+        <div id="errorMessage" class="error-message"></div>
+
+        <form id="authForm">
+            <!-- Full Name (Register Only) -->
+            <div class="form-group" id="nameGroup" style="display: none;">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input type="text" id="fullName" class="form-input" placeholder="Dr. John Doe">
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" id="email" class="form-input" required placeholder="name@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" id="password" class="form-input" required placeholder="••••••••">
+            </div>
+
+            <!-- Role (Register Only) -->
+            <div class="form-group" id="roleGroup" style="display: none;">
+                <label for="role" class="form-label">I am a</label>
+                <select id="role" class="form-input">
+                    <option value="PATIENT">Patient</option>
+                    <option value="PRACTITIONER">Practitioner</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large" style="width: 100%;" id="submitBtn">Sign In</button>
+        </form>
+
+        <div class="auth-footer">
+            <span id="footerText">Don't have an account?</span>
+            <span class="auth-toggle" id="toggleAuth">Create account</span>
+        </div>
+
+        <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #666;">
+            <strong>Demo Mode Enabled</strong><br>
+            Admin: admin@ayushcare.com / password123<br>
+            Dr. Sharma: ayurveda@demo.com / password123<br>
+            Patient: patient@demo.com / password123
+        </div>
+    </div>
+
+    <script src="scripts/mockApi.js"></script>
+    <script src="scripts/api.js"></script>
+    <script src="scripts/auth.js"></script>
+</body>
+
+</html>

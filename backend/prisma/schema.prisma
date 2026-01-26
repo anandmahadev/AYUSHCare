@@ -1,0 +1,213 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Enums
+enum Role {
+  ADMIN
+  PRACTITIONER
+  PATIENT
+}
+
+enum Speciality {
+  AYURVEDA
+  YOGA_NATUROPATHY
+  UNANI
+  SIDDHA
+  HOMEOPATHY
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  COMPLETED
+  RESCHEDULED
+}
+
+enum ConsultationType {
+  VIDEO
+  AUDIO
+  IN_PERSON
+}
+
+// Core User Model
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String   // Hashed
+  fullName  String
+  phone     String?
+  role      Role     @default(PATIENT)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  practitionerProfile PractitionerProfile?
+  patientProfile      PatientProfile?
+  sentMessages        Message[] @relation("SentMessages")
+  receivedMessages    Message[] @relation("ReceivedMessages")
+
+  @@map("users")
+}
+
+// Practitioner Specifics
+model PractitionerProfile {
+  id            String       @id @default(uuid())
+  userId        String       @unique
+  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  specialities  Speciality[]
+  licenseNumber String       @unique
+  bio           String?      @db.Text
+  experience    Int          // Years
+  consultationFee Decimal    @db.Decimal(10, 2)
+  isAvailable   Boolean      @default(true)
+  
+  // Schedule availability stored as JSON for flexibility
+  // Format: { "monday": ["09:00-12:00", "14:00-17:00"], ... }
+  availability  Json?
+
+  appointments  Appointment[]
+  prescriptions Prescription[]
+  patients      PatientProfile[] // Implicit M-N via appointments logic usually, but here distinct relation if needed
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("practitioner_profiles")
+}
+
+// Patient Specifics
+model PatientProfile {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  dateOfBirth     DateTime?
+  gender          String?
+  bloodGroup      String?
+  address         String?
+  
+  // AYUSH Specifics
+  constitutionType String? // e.g., Vata, Pitta, Kapha for Ayurveda
+  dietaryPreference String?
+  lifestyleNotes   String? @db.Text
+  allergies        String?
+  medicalHistory   Json?   // Structured history
+
+  appointments    Appointment[]
+  prescriptions   Prescription[]
+  symptomLogs     SymptomLog[]
+  reminders       Reminder[]
+  practitioners   PractitionerProfile[] // Keep track of their doctors
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("patient_profiles")
+}
+
+// Appointments
+model Appointment {
+  id             String            @id @default(uuid())
+  practitionerId String
+  practitioner   PractitionerProfile @relation(fields: [practitionerId], references: [id])
+  patientId      String
+  patient        PatientProfile      @relation(fields: [patientId], references: [id])
+  
+  scheduledAt    DateTime
+  durationMinutes Int              @default(30)
+  status         AppointmentStatus @default(PENDING)
+  type           ConsultationType  @default(VIDEO)
+  meetingLink    String?           // For teleconsultation
+  notes          String?           // Pre-appointment notes
+  diagnosis      String?           // Post-appointment
+  
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  @@map("appointments")
+}
+
+// Treatments & Prescriptions
+model Prescription {
+  id             String            @id @default(uuid())
+  practitionerId String
+  practitioner   PractitionerProfile @relation(fields: [practitionerId], references: [id])
+  patientId      String
+  patient        PatientProfile      @relation(fields: [patientId], references: [id])
+  
+  diagnosis      String?
+  notes          String?           @db.Text
+  
+  // JSON structure for medicines to allow flexibility across AYUSH streams
+  // Example: [{ name: "Ashwagandha", dosage: "500mg", freq: "BD", instructions: "After food" }]
+  medicines      Json[]
+  
+  // AYUSH specific instructions
+  yogaInstructions String?         @db.Text
+  dietaryAdvice    String?         @db.Text
+  lifestyleAdvice  String?         @db.Text
+  
+  followUpDate     DateTime?
+  isActive         Boolean         @default(true)
+
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+
+  @@map("prescriptions")
+}
+
+// Symptom Tracking
+model SymptomLog {
+  id        String   @id @default(uuid())
+  patientId String
+  patient   PatientProfile @relation(fields: [patientId], references: [id])
+  
+  loggedAt  DateTime @default(now())
+  sypmtom   String
+  severity  Int      // 1-10
+  notes     String?
+  
+  @@map("symptom_logs")
+}
+
+// Reminders
+model Reminder {
+  id        String   @id @default(uuid())
+  patientId String
+  patient   PatientProfile @relation(fields: [patientId], references: [id])
+  
+  title     String
+  type      String   // MEDICINE, YOGA, DIET, APPOINTMENT
+  time      String   // "08:00"
+  days      String[] // ["MON", "TUE"]
+  isActive  Boolean  @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("reminders")
+}
+
+// Simple Chat/Messages (Teleconsultation Support)
+model Message {
+  id          String   @id @default(uuid())
+  content     String   @db.Text
+  senderId    String
+  sender      User     @relation("SentMessages", fields: [senderId], references: [id])
+  receiverId  String
+  receiver    User     @relation("ReceivedMessages", fields: [receiverId], references: [id])
+  read        Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@map("messages")
+}

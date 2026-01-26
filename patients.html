@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="AYUSHCare for Patients - Track your AYUSH treatment, access teleconsultation, manage appointments, and monitor your health progress.">
+    <title>For Patients - AYUSHCare</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/practitioners.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">⚕</span>
+                    <span class="logo-text">AYUSHCare</span>
+                </a>
+                <div class="nav-links" id="navLinks">
+                    <a href="index.html" class="nav-link">Home</a>
+                    <a href="practitioners.html" class="nav-link">For Practitioners</a>
+                    <a href="patients.html" class="nav-link active">For Patients</a>
+                    <a href="specialities.html" class="nav-link">Specialities</a>
+                    <a href="technology.html" class="nav-link">Technology</a>
+                    <a href="contact.html" class="nav-link">Contact</a>
+                </div>
+                <div class="nav-actions">
+                    <a href="dashboard.html" class="btn btn-text">Sign In</a>
+                    <a href="contact.html" class="btn btn-primary">Book Consultation</a>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1 class="page-title">Your Health Journey, Simplified</h1>
+                <p class="page-subtitle">Track treatments, manage appointments, and stay connected with your AYUSH
+                    practitioner for better health outcomes.</p>
+                <div class="hero-buttons">
+                    <a href="contact.html" class="btn btn-large btn-primary">Book Consultation</a>
+                    <a href="dashboard.html" class="btn btn-large btn-secondary">Patient Portal</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Patient Features -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header center">
+                <h2 class="section-title">Everything You Need for Your Health Journey</h2>
+                <p class="section-subtitle">Manage your AYUSH treatment with comprehensive digital tools</p>
+            </div>
+
+            <div class="feature-showcase">
+                <div class="showcase-item">
+                    <div class="showcase-visual">
+                        <div class="visual-demo">
+                            <div class="demo-header">
+                                <div class="demo-icon">💊</div>
+                                <div class="demo-title">Treatment Reminders</div>
+                            </div>
+                            <div class="reminder-list">
+                                <div class="reminder-item"
+                                    style="background-color: #d1fae5; border-left-color: var(--color-success)">
+                                    <div class="reminder-patient">Ashwagandha Capsule</div>
+                                    <div class="reminder-action">Take 1 capsule after breakfast</div>
+                                </div>
+                                <div class="reminder-item"
+                                    style="background-color: #dbeafe; border-left-color: var(--color-info)">
+                                    <div class="reminder-patient">Yoga Session</div>
+                                    <div class="reminder-action">30 minutes at 6:00 AM</div>
+                                </div>
+                                <div class="reminder-item">
+                                    <div class="reminder-patient">Dietary Reminder</div>
+                                    <div class="reminder-action">Avoid cold beverages today</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <h3 class="showcase-title">Smart Treatment Reminders</h3>
+                        <p class="showcase-description">Never miss your medication, yoga sessions, or dietary guidelines
+                            with intelligent reminders tailored to your treatment plan.</p>
+                        <ul class="feature-list">
+                            <li>Medication schedule tracking</li>
+                            <li>Yoga and exercise reminders</li>
+                            <li>Dietary guideline notifications</li>
+                            <li>Customizable reminder times</li>
+                            <li>Multi-device synchronization</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="showcase-item reverse">
+                    <div class="showcase-visual">
+                        <div class="visual-demo">
+                            <div class="demo-header">
+                                <div class="demo-icon">📈</div>
+                                <div class="demo-title">Progress Dashboard</div>
+                            </div>
+                            <div class="visual-metrics">
+                                <div class="metric-row">
+                                    <span>Treatment Adherence</span>
+                                    <span class="metric-value success">92%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 92%"></div>
+                                </div>
+                                <div class="metric-row">
+                                    <span>Symptom Improvement</span>
+                                    <span class="metric-value success">+35%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                </div>
+                                <div class="metric-row">
+                                    <span>Days Completed</span>
+                                    <span class="metric-value">18 of 30</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <h3 class="showcase-title">Progress Tracking Dashboard</h3>
+                        <p class="showcase-description">Visualize your health improvements with comprehensive tracking
+                            of symptoms, adherence, and treatment milestones.</p>
+                        <ul class="feature-list">
+                            <li>Visual progress charts</li>
+                            <li>Symptom tracking timeline</li>
+                            <li>Treatment adherence metrics</li>
+                            <li>Health goal monitoring</li>
+                            <li>Share reports with your practitioner</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="showcase-item">
+                    <div class="showcase-visual">
+                        <div class="visual-demo">
+                            <div class="demo-header">
+                                <div class="demo-icon">📱</div>
+                                <div class="demo-title">Teleconsultation</div>
+                            </div>
+                            <div class="prescription-content">
+                                <div class="prescription-patient">Next Consultation</div>
+                                <div class="appointment-list">
+                                    <div class="appointment-item">
+                                        <div class="appointment-time">Video</div>
+                                        <div class="appointment-details">
+                                            <div class="appointment-patient">Dr. Sharma</div>
+                                            <div class="appointment-type">Monday, 10:00 AM</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="prescription-patient" style="margin-top: var(--spacing-md)">Quick Actions
+                                </div>
+                                <div class="demo-list" style="margin-top: var(--spacing-sm)">
+                                    <div class="demo-list-item">
+                                        <div class="patient-info">
+                                            <div class="patient-name">Join Video Call</div>
+                                        </div>
+                                        <div class="record-status active">Ready</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <h3 class="showcase-title">Teleconsultation Access</h3>
+                        <p class="showcase-description">Connect with your AYUSH practitioner from anywhere with secure
+                            video consultations and digital health records.</p>
+                        <ul class="feature-list">
+                            <li>HD video consultations</li>
+                            <li>Secure messaging with practitioners</li>
+                            <li>Digital prescription delivery</li>
+                            <li>Appointment scheduling</li>
+                            <li>Access from any device</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="showcase-item reverse">
+                    <div class="showcase-visual">
+                        <div class="visual-demo records-demo">
+                            <div class="demo-header">
+                                <div class="demo-icon">📋</div>
+                                <div class="demo-title">Health Records</div>
+                            </div>
+                            <div class="demo-list">
+                                <div class="demo-list-item">
+                                    <div class="patient-info">
+                                        <div class="patient-name">Current Prescription</div>
+                                        <div class="patient-meta">Updated 2 days ago</div>
+                                    </div>
+                                    <div class="record-status active">View</div>
+                                </div>
+                                <div class="demo-list-item">
+                                    <div class="patient-info">
+                                        <div class="patient-name">Lab Reports</div>
+                                        <div class="patient-meta">3 reports available</div>
+                                    </div>
+                                    <div class="record-status active">View</div>
+                                </div>
+                                <div class="demo-list-item">
+                                    <div class="patient-info">
+                                        <div class="patient-name">Treatment History</div>
+                                        <div class="patient-meta">6 months</div>
+                                    </div>
+                                    <div class="record-status active">View</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="showcase-content">
+                        <h3 class="showcase-title">Complete Health Records</h3>
+                        <p class="showcase-description">Access your complete medical history, prescriptions, lab
+                            reports, and treatment plans anytime, anywhere.</p>
+                        <ul class="feature-list">
+                            <li>Digital prescription storage</li>
+                            <li>Lab report access</li>
+                            <li>Treatment history timeline</li>
+                            <li>Secure document sharing</li>
+                            <li>Download and print records</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="section section-gray">
+        <div class="container">
+            <div class="section-header center">
+                <h2 class="section-title">Benefits for Patients</h2>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">✓</div>
+                    <h3 class="benefit-title">Better Adherence</h3>
+                    <p class="benefit-description">Follow your treatment plan with automated reminders and easy
+                        tracking.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3 class="benefit-title">Track Progress</h3>
+                    <p class="benefit-description">Monitor your health improvements with visual charts and metrics.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⏰</div>
+                    <h3 class="benefit-title">Save Time</h3>
+                    <p class="benefit-description">Book appointments, consult online, and access records instantly.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔒</div>
+                    <h3 class="benefit-title">Private & Secure</h3>
+                    <p class="benefit-description">Your health data is encrypted and protected with bank-level security.
+                    </p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">📱</div>
+                    <h3 class="benefit-title">Mobile Access</h3>
+                    <p class="benefit-description">Manage your health from your smartphone, tablet, or computer.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🤝</div>
+                    <h3 class="benefit-title">Continuous Care</h3>
+                    <p class="benefit-description">Stay connected with your practitioner between appointments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">Start your health journey today</h2>
+                <p class="cta-subtitle">Join thousands of patients experiencing better health outcomes with AYUSHCare.
+                </p>
+                <div class="cta-buttons">
+                    <a href="contact.html" class="btn btn-large btn-white">Book Consultation</a>
+                    <a href="dashboard.html" class="btn btn-large btn-secondary">Access Patient Portal</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <span class="logo-icon">⚕</span>
+                        <span class="logo-text">AYUSHCare</span>
+                    </div>
+                    <p class="footer-description">Professional digital platform for modern AYUSH practices.</p>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="practitioners.html">For Practitioners</a></li>
+                        <li><a href="patients.html">For Patients</a></li>
+                        <li><a href="specialities.html">Specialities</a></li>
+                        <li><a href="technology.html">Technology</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="contact.html">Request Demo</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4 class="footer-heading">Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="dashboard.html">Sign In</a></li>
+                        <li><a href="#">System Status</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 AYUSHCare. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+</body>
+
+</html>
