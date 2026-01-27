@@ -47,6 +47,15 @@ app.use('/api/patients', patientRoutes);
 app.use('/api/appointments', appointmentRoutes);
 app.use('/api/prescriptions', prescriptionRoutes);
 
+// Root Route
+app.get('/', (req, res) => {
+    res.status(200).json({
+        message: 'Welcome to AYUSHCare Backend API',
+        docs: '/api-docs',
+        health: '/health'
+    });
+});
+
 // Health Check
 app.get('/health', (req, res) => {
     res.status(200).json({ status: 'OK', timestamp: new Date() });
