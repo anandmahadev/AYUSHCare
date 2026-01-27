@@ -19,4 +19,18 @@ export default defineConfig({
             }
         }
     },
+    build: {
+        rollupOptions: {
+            input: {
+                main: path.resolve(__dirname, 'index.html'),
+                contact: path.resolve(__dirname, 'contact.html'),
+                dashboard: path.resolve(__dirname, 'dashboard.html'),
+                login: path.resolve(__dirname, 'login.html'),
+                patients: path.resolve(__dirname, 'patients.html'),
+                practitioners: path.resolve(__dirname, 'practitioners.html'),
+                specialities: path.resolve(__dirname, 'specialities.html'),
+                technology: path.resolve(__dirname, 'technology.html'),
+            },
+        },
+    },
 })

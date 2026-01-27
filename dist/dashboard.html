@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="AYUSHCare Dashboard - Manage your practice, patients, appointments, and health records.">
+    <title>Dashboard - AYUSHCare</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/assets/dashboard-B--xo23Q.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/main-C4_tj5mD.js">
+  <link rel="modulepreload" crossorigin href="/assets/api-DgY0GA1A.js">
+  <link rel="stylesheet" crossorigin href="/assets/main-BYk_ymKj.css">
+  <link rel="stylesheet" crossorigin href="/assets/dashboard-DAD8eBIz.css">
+</head>
+
+<body class="dashboard-body">
+    <!-- Dashboard Container -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-logo">
+                    <span class="logo-icon">⚕</span>
+                    <span class="logo-text">AYUSHCare</span>
+                </a>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="sidebar-link active" data-view="overview">
+                    <span class="link-icon">📊</span>
+                    <span class="link-text">Overview</span>
+                </a>
+                <a href="#" class="sidebar-link" data-view="patients">
+                    <span class="link-icon">👥</span>
+                    <span class="link-text">Patients</span>
+                </a>
+                <a href="#" class="sidebar-link" data-view="appointments">
+                    <span class="link-icon">📅</span>
+                    <span class="link-text">Appointments</span>
+                </a>
+                <a href="#" class="sidebar-link" data-view="prescriptions">
+                    <span class="link-icon">💊</span>
+                    <span class="link-text">Prescriptions</span>
+                </a>
+                <a href="#" class="sidebar-link" data-view="analytics">
+                    <span class="link-icon">📈</span>
+                    <span class="link-text">Analytics</span>
+                </a>
+                <div class="sidebar-divider"></div>
+                <a href="#" class="sidebar-link" data-view="settings">
+                    <span class="link-icon">⚙️</span>
+                    <span class="link-text">Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="user-avatar">DS</div>
+                    <div class="user-info">
+                        <div class="user-name">Dr. Sharma</div>
+                        <div class="user-role">Ayurveda Specialist</div>
+                    </div>
+                </div>
+                <a href="index.html" class="btn btn-text btn-sm">Sign Out</a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Top Bar -->
+            <header class="dashboard-header">
+                <div class="header-left">
+                    <button class="mobile-sidebar-toggle" id="sidebarToggle">☰</button>
+                    <h1 class="dashboard-title" id="viewTitle">Dashboard Overview</h1>
+                </div>
+                <div class="header-right">
+                    <div class="header-search">
+                        <input type="search" placeholder="Search patients, appointments..." class="search-input">
+                    </div>
+                    <button class="header-btn">
+                        <span class="btn-icon">🔔</span>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <div class="user-type-switch">
+                        <button class="type-btn active" id="doctorView">Doctor</button>
+                        <button class="type-btn" id="patientView">Patient</button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Overview View (Default) -->
+                <div class="dashboard-view active" id="view-overview">
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon" style="background: linear-gradient(135deg, #10b981, #34d399);">👥
+                                </div>
+                                <div class="stat-trend positive">↑ 12%</div>
+                            </div>
+                            <div class="stat-value">248</div>
+                            <div class="stat-label">Total Patients</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-icon" style="background: linear-gradient(135deg, #3b82f6, #60a5fa);">📅
+                                </div>
+                                <div class="stat-trend positive">↑ 8%</div>
+                            </div>
+                            <div class="stat-value">18</div>
+                            <div class="stat-label">Today's Appointments</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);">💊
+                            </div>
+                            <div class="stat-trend">—</div>
+                        </div>
+                        <div class="stat-value">42</div>
+                        <div class="stat-label">Active Prescriptions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">⭐
+                            </div>
+                            <div class="stat-trend positive">↑ 5%</div>
+                        </div>
+                        <div class="stat-value">4.8</div>
+                        <div class="stat-label">Patient Rating</div>
+                    </div>
+                </div>
+
+                <div class="content-grid">
+                    <!-- Today's Schedule -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Today's Schedule</h3>
+                            <a href="#" class="card-action">View All</a>
+                        </div>
+                        <div class="appointments-list">
+                            <div class="appointment-card">
+                                <div class="appointment-time">
+                                    <div class="time-indicator"></div>
+                                    <span>09:00 AM</span>
+                                </div>
+                                <div class="appointment-info">
+                                    <div class="patient-name">Rajesh Kumar</div>
+                                    <div class="appointment-type">Follow-up Consultation</div>
+                                </div>
+                                <div class="appointment-actions">
+                                    <button class="action-btn primary">Start</button>
+                                    <button class="action-btn">Reschedule</button>
+                                </div>
+                            </div>
+                            <div class="appointment-card">
+                                <div class="appointment-time">
+                                    <div class="time-indicator active"></div>
+                                    <span>10:30 AM</span>
+                                </div>
+                                <div class="appointment-info">
+                                    <div class="patient-name">Priya Sharma</div>
+                                    <div class="appointment-type">Initial Consultation</div>
+                                </div>
+                                <div class="appointment-actions">
+                                    <button class="action-btn primary">Start</button>
+                                    <button class="action-btn">Reschedule</button>
+                                </div>
+                            </div>
+                            <div class="appointment-card">
+                                <div class="appointment-time">
+                                    <div class="time-indicator"></div>
+                                    <span>02:00 PM</span>
+                                </div>
+                                <div class="appointment-info">
+                                    <div class="patient-name">Amit Patel</div>
+                                    <div class="appointment-type">Treatment Review</div>
+                                </div>
+                                <div class="appointment-actions">
+                                    <button class="action-btn primary">Start</button>
+                                    <button class="action-btn">Reschedule</button>
+                                </div>
+                            </div>
+                            <div class="appointment-card">
+                                <div class="appointment-time">
+                                    <div class="time-indicator"></div>
+                                    <span>04:00 PM</span>
+                                </div>
+                                <div class="appointment-info">
+                                    <div class="patient-name">Sneha Reddy</div>
+                                    <div class="appointment-type">Ayurvedic Therapy</div>
+                                </div>
+                                <div class="appointment-actions">
+                                    <button class="action-btn primary">Start</button>
+                                    <button class="action-btn">Reschedule</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity & Analytics -->
+                    <div class="side-panel">
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Treatment Outcomes</h3>
+                            </div>
+                            <div class="outcomes-chart">
+                                <div class="outcome-item">
+                                    <div class="outcome-label">Excellent Recovery</div>
+                                    <div class="outcome-bar">
+                                        <div class="outcome-fill" style="width: 75%; background: var(--color-success);">
+                                        </div>
+                                    </div>
+                                    <div class="outcome-value">75%</div>
+                                </div>
+                                <div class="outcome-item">
+                                    <div class="outcome-label">Good Progress</div>
+                                    <div class="outcome-bar">
+                                        <div class="outcome-fill" style="width: 60%; background: var(--color-info);">
+                                        </div>
+                                    </div>
+                                    <div class="outcome-value">60%</div>
+                                </div>
+                                <div class="outcome-item">
+                                    <div class="outcome-label">Ongoing Treatment</div>
+                                    <div class="outcome-bar">
+                                        <div class="outcome-fill" style="width: 45%; background: var(--color-warning);">
+                                        </div>
+                                    </div>
+                                    <div class="outcome-value">45%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Quick Actions</h3>
+                            </div>
+                            <div class="quick-actions">
+                                <button class="quick-action-btn">
+                                    <span class="qa-icon">➕</span>
+                                    <span class="qa-text">Add Patient</span>
+                                </button>
+                                <button class="quick-action-btn">
+                                    <span class="qa-icon">📝</span>
+                                    <span class="qa-text">New Prescription</span>
+                                </button>
+                                <button class="quick-action-btn">
+                                    <span class="qa-icon">📅</span>
+                                    <span class="qa-text">Book Appointment</span>
+                                </button>
+                                <button class="quick-action-btn">
+                                    <span class="qa-icon">📊</span>
+                                    <span class="qa-text">View Reports</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Recent Notifications</h3>
+                            </div>
+                            <div class="notifications-list">
+                                <div class="notification-item">
+                                    <div class="notif-icon">🔔</div>
+                                    <div class="notif-content">
+                                        <div class="notif-text">New patient registration: Maria Singh</div>
+                                        <div class="notif-time">10 minutes ago</div>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notif-icon">✓</div>
+                                    <div class="notif-content">
+                                        <div class="notif-text">Appointment confirmed: 3:00 PM</div>
+                                        <div class="notif-time">1 hour ago</div>
+                                    </div>
+                                </div>
+                                <div class="notification-item">
+                                    <div class="notif-icon">📋</div>
+                                    <div class="notif-content">
+                                        <div class="notif-text">Lab results ready for review</div>
+                                        <div class="notif-time">2 hours ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Views (Hidden by default) -->
+            <div class="dashboard-view" id="view-patients">
+                <div class="view-header">
+                    <button class="btn btn-primary">+ Add New Patient</button>
+                </div>
+                <div class="dashboard-card">
+                    <div class="table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Patient ID</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Contact</th>
+                                    <th>Last Visit</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>PT-2024-001</td>
+                                    <td>Rajesh Kumar</td>
+                                    <td>45</td>
+                                    <td>+91 98765 43210</td>
+                                    <td>Jan 24, 2026</td>
+                                    <td><span class="status-badge active">Active</span></td>
+                                    <td>
+                                        <button class="table-action">View</button>
+                                        <button class="table-action">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>PT-2024-002</td>
+                                    <td>Priya Sharma</td>
+                                    <td>32</td>
+                                    <td>+91 98765 43211</td>
+                                    <td>Jan 26, 2026</td>
+                                    <td><span class="status-badge active">Active</span></td>
+                                    <td>
+                                        <button class="table-action">View</button>
+                                        <button class="table-action">Edit</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>PT-2024-003</td>
+                                    <td>Amit Patel</td>
+                                    <td>58</td>
+                                    <td>+91 98765 43212</td>
+                                    <td>Jan 20, 2026</td>
+                                    <td><span class="status-badge follow-up">Follow-up</span></td>
+                                    <td>
+                                        <button class="table-action">View</button>
+                                        <button class="table-action">Edit</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-view" id="view-appointments">
+                <div class="empty-state">
+                    <div class="empty-icon">📅</div>
+                    <h3 class="empty-title">Appointments View</h3>
+                    <p class="empty-text">Calendar and appointment management interface would appear here.</p>
+                </div>
+            </div>
+
+            <div class="dashboard-view" id="view-prescriptions">
+                <div class="empty-state">
+                    <div class="empty-icon">💊</div>
+                    <h3 class="empty-title">Prescriptions View</h3>
+                    <p class="empty-text">E-prescription management interface would appear here.</p>
+                </div>
+            </div>
+
+            <div class="dashboard-view" id="view-analytics">
+                <div class="empty-state">
+                    <div class="empty-icon">📈</div>
+                    <h3 class="empty-title">Analytics View</h3>
+                    <p class="empty-text">Comprehensive analytics and reporting dashboard would appear here.</p>
+                </div>
+            </div>
+
+            <div class="dashboard-view" id="view-settings">
+                <div class="empty-state">
+                    <div class="empty-icon">⚙️</div>
+                    <h3 class="empty-title">Settings View</h3>
+                    <p class="empty-text">Practice settings and configuration options would appear here.</p>
+                </div>
+            </div>
+    </div>
+    </main>
+    </div>
+
+</body>
+
+</html>

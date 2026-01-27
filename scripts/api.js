@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'AIzaSyCeY6U02cFOEfnZLq27v9wFZ5quQvH22pU';
 
 class Api {
     static get token() {
@@ -94,3 +94,7 @@ function requireAuth() {
         window.location.href = 'login.html';
     }
 }
+
+// Expose to window for module support
+window.Api = Api;
+window.requireAuth = requireAuth;
