@@ -1,31 +1,6 @@
 /* Practitioners Page Specific Styles */
 
-.page-hero {
-    padding-top: calc(var(--navbar-height) + var(--spacing-3xl));
-    padding-bottom: var(--spacing-3xl);
-    background: linear-gradient(to bottom, var(--color-gray-50) 0%, var(--color-white) 100%);
-}
-
-.page-hero-content {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.page-title {
-    font-size: var(--font-size-4xl);
-    font-weight: var(--font-weight-bold);
-    color: var(--color-gray-900);
-    margin-bottom: var(--spacing-lg);
-    line-height: 1.2;
-}
-
-.page-subtitle {
-    font-size: var(--font-size-lg);
-    color: var(--color-gray-600);
-    margin-bottom: var(--spacing-2xl);
-    line-height: 1.6;
-}
+/* Page Hero styles moved to main.css */
 
 /* Feature Showcase */
 .feature-showcase {

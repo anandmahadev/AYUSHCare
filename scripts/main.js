@@ -1,14 +1,14 @@
 // Main JavaScript for AYUSHCare
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Mobile Menu Toggle
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     const navLinks = document.getElementById('navLinks');
-    
+
     if (mobileMenuToggle && navLinks) {
-        mobileMenuToggle.addEventListener('click', function() {
+        mobileMenuToggle.addEventListener('click', function () {
             navLinks.classList.toggle('active');
-            
+
             // Animate hamburger menu
             const spans = this.querySelectorAll('span');
             if (navLinks.classList.contains('active')) {
@@ -21,9 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 spans[2].style.transform = '';
             }
         });
-        
+
         // Close menu when clicking outside
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', function (event) {
             if (!event.target.closest('.nav-content')) {
                 navLinks.classList.remove('active');
                 const spans = mobileMenuToggle.querySelectorAll('span');
@@ -36,9 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Navbar Scroll Effect
     const navbar = document.getElementById('navbar');
-    
+
     if (navbar) {
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             if (window.scrollY > 10) {
                 navbar.classList.add('scrolled');
             } else {
@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Smooth Scrolling for Anchor Links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
             const href = this.getAttribute('href');
             if (href !== '#' && href !== '#!') {
                 e.preventDefault();
@@ -66,13 +66,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Progress Bar Animation on Scroll
     const progressBars = document.querySelectorAll('.progress-fill');
-    
+
     const observerOptions = {
         threshold: 0.5,
         rootMargin: '0px 0px -100px 0px'
     };
 
-    const progressObserver = new IntersectionObserver(function(entries) {
+    const progressObserver = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const bar = entry.target;
@@ -91,8 +91,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Chart Bar Animation
     const chartBars = document.querySelectorAll('.chart-bar');
-    
-    const chartObserver = new IntersectionObserver(function(entries) {
+
+    const chartObserver = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const bar = entry.target;
@@ -111,13 +111,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Card Hover Effects
     const featureCards = document.querySelectorAll('.feature-card, .benefit-card, .speciality-card');
-    
+
     featureCards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
+        card.addEventListener('mouseenter', function () {
             this.style.transform = 'translateY(-4px)';
         });
-        
-        card.addEventListener('mouseleave', function() {
+
+        card.addEventListener('mouseleave', function () {
             this.style.transform = '';
         });
     });
@@ -145,11 +145,49 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add active state to current page in navigation
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const navLinksAll = document.querySelectorAll('.nav-link');
-    
+
     navLinksAll.forEach(link => {
         const linkPage = link.getAttribute('href');
         if (linkPage === currentPage) {
             link.classList.add('active');
+        }
+    });
+
+    // Page Transition / Loader
+    const loaderHTML = `
+        <div class="page-loader" id="pageLoader">
+            <div class="loader-spinner"></div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', loaderHTML);
+    const pageLoader = document.getElementById('pageLoader');
+
+    // Handle internal links
+    document.addEventListener('click', function (e) {
+        const link = e.target.closest('a');
+        if (!link) return;
+
+        const href = link.getAttribute('href');
+        // Check if it's an internal link and not a hash link or modifier key click
+        if (href &&
+            !href.startsWith('#') &&
+            !href.startsWith('mailto:') &&
+            !href.startsWith('tel:') &&
+            !href.startsWith('javascript:') &&
+            !link.target &&
+            !e.ctrlKey && !e.metaKey && !e.shiftKey && !e.altKey) {
+
+            e.preventDefault();
+
+            // Show loader
+            if (pageLoader) {
+                pageLoader.classList.add('visible');
+            }
+
+            // Small delay for visual feedback then navigate
+            setTimeout(() => {
+                window.location.href = href;
+            }, 400);
         }
     });
 
