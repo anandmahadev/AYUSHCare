@@ -307,6 +307,7 @@ a {
     padding-top: calc(var(--navbar-height) + var(--spacing-4xl));
     padding-bottom: var(--spacing-4xl);
     background: linear-gradient(to bottom, var(--color-gray-50) 0%, var(--color-white) 100%);
+    position: relative;
 }
 
 .hero-content {
@@ -314,6 +315,8 @@ a {
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-3xl);
     align-items: center;
+    position: relative;
+    z-index: 10;
 }
 
 .hero-title {
