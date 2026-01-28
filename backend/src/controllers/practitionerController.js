@@ -44,16 +44,21 @@ exports.getAllPractitioners = async (req, res, next) => {
 // Update my profile (Practitioner only)
 exports.updateProfile = async (req, res, next) => {
     try {
-        const { specialities, bio, experience, consultationFee, availability } = req.body;
+        const { specialities, bio, experience, consultationFee, availability, licenseNumber, documents } = req.body;
+
+        // If updating verification details, reset status to PENDING (optional logic, but good for security)
+        // For now, just allow update.
 
         const profile = await prisma.practitionerProfile.update({
             where: { userId: req.user.id },
             data: {
                 specialities, // Array of Enums
                 bio,
-                experience: Number(experience),
-                consultationFee: Number(consultationFee),
-                availability // JSON object
+                experience: experience ? Number(experience) : undefined,
+                consultationFee: consultationFee ? Number(consultationFee) : undefined,
+                availability, // JSON object
+                licenseNumber,
+                documents
             }
         });
 

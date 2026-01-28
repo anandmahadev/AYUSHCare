@@ -111,14 +111,23 @@
                 <input type="text" id="fullName" class="form-input" placeholder="Dr. John Doe">
             </div>
 
+            <!-- Email -->
             <div class="form-group">
-                <label for="email" class="form-label">Email Address</label>
-                <input type="email" id="email" class="form-input" required placeholder="name@example.com">
+                <label for="email" class="form-label">Email Address or Mobile</label>
+                <input type="text" id="email" class="form-input" required placeholder="name@example.com or 9876543210">
             </div>
 
-            <div class="form-group">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" id="password" class="form-input" required placeholder="••••••••">
+            <!-- Password (Hidden, keeping for legacy/admin if needed, but UI is OTP now) -->
+            <!-- <div class="form-group" style="display:none;">...</div> -->
+
+            <!-- OTP Section -->
+            <div class="form-group" id="otpGroup" style="display: none;">
+                <label for="otp" class="form-label">Enter OTP</label>
+                <input type="text" id="otp" class="form-input" placeholder="123456" maxlength="6">
+                <div style="text-align: right; margin-top: 0.5rem;">
+                    <a href="#" id="resendOtp"
+                        style="font-size: 0.875rem; color: var(--color-primary); display: none;">Resend OTP</a>
+                </div>
             </div>
 
             <!-- Role (Register Only) -->
@@ -130,7 +139,21 @@
                 </select>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-large" style="width: 100%;" id="submitBtn">Sign In</button>
+            <!-- Actions -->
+            <button type="button" class="btn btn-primary btn-large" style="width: 100%; margin-bottom: 1rem;"
+                id="sendOtpBtn">Send OTP</button>
+            <button type="submit" class="btn btn-primary btn-large" style="width: 100%; display: none;"
+                id="submitBtn">Verify & Sign In</button>
+
+            <div style="text-align: center; margin-bottom: 1rem; color: var(--color-gray-500); font-size: 0.8rem;">OR
+            </div>
+
+            <button type="button" class="btn"
+                style="width: 100%; background: white; border: 1px solid #ddd; display: flex; align-items: center; justify-content: center; gap: 0.5rem;"
+                id="googleBtn">
+                <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" style="width: 20px;">
+                Sign in with Google
+            </button>
         </form>
 
         <div class="auth-footer">
