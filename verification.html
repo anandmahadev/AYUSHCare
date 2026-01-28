@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification - AYUSHCare</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        body {
+            background-color: var(--color-gray-50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 500px;
+            padding: var(--spacing-xl);
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .auth-logo {
+            font-size: var(--font-size-3xl);
+            margin-bottom: var(--spacing-sm);
+            display: block;
+        }
+
+        .auth-title {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-gray-900);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: var(--font-weight-medium);
+            color: var(--color-gray-700);
+            font-size: var(--font-size-sm);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--color-gray-300);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            transition: all var(--transition-base);
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="auth-container">
+        <div class="auth-header">
+            <span class="auth-logo">⚕ AYUSHCare</span>
+            <h1 class="auth-title">Practitioner Verification</h1>
+            <p style="color: var(--color-gray-500); margin-top: var(--spacing-xs);">Complete your profile to start
+                practicing</p>
+        </div>
+
+        <div id="statusMessage"
+            style="display:none; padding: 1rem; background: #e0f2fe; color: #0369a1; border-radius: 8px; margin-bottom: 1rem;">
+            Your verification is pending approval.
+        </div>
+
+        <form id="verifyForm">
+            <div class="form-group">
+                <label for="licenseNumber" class="form-label">License Number</label>
+                <input type="text" id="licenseNumber" class="form-input" required placeholder="AYUSH-XXXX-YYYY">
+            </div>
+
+            <div class="form-group">
+                <label for="speciality" class="form-label">Primary Speciality</label>
+                <select id="speciality" class="form-input" required>
+                    <option value="AYURVEDA">Ayurveda</option>
+                    <option value="YOGA_NATUROPATHY">Yoga & Naturopathy</option>
+                    <option value="UNANI">Unani</option>
+                    <option value="SIDDHA">Siddha</option>
+                    <option value="HOMEOPATHY">Homeopathy</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="experience" class="form-label">Experience (Years)</label>
+                <input type="number" id="experience" class="form-input" required min="0">
+            </div>
+
+            <div class="form-group">
+                <label for="documents" class="form-label">Upload License Document</label>
+                <input type="file" id="documents" class="form-input">
+                <small style="color: gray;">(Simulated upload)</small>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large" id="submitBtn">Submit for Verification</button>
+        </form>
+
+        <div style="margin-top: 1rem; text-align: center;">
+            <a href="#" id="logoutBtn" style="color: red;">Logout</a>
+        </div>
+    </div>
+
+    <script type="module" src="scripts/api.js"></script>
+    <script type="module">
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Check auth
+            if (!Api.isAuthenticated()) {
+                window.location.href = 'login.html';
+                return;
+            }
+
+            // Handle Logout
+            document.getElementById('logoutBtn').addEventListener('click', (e) => {
+                e.preventDefault();
+                Api.logout();
+            });
+
+            const form = document.getElementById('verifyForm');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const btn = document.getElementById('submitBtn');
+                btn.disabled = true;
+                btn.textContent = 'Submitting...';
+
+                const licenseNumber = document.getElementById('licenseNumber').value;
+                const speciality = document.getElementById('speciality').value;
+                const experience = document.getElementById('experience').value;
+
+                // Simulate file upload logic returning a URL
+                const documents = ["https://example.com/uploaded-doc.pdf"];
+
+                try {
+                    await Api.patch('/practitioners/profile', {
+                        licenseNumber,
+                        specialities: [speciality],
+                        experience,
+                        documents
+                    });
+
+                    alert('Verification submitted successfully! Please wait for admin approval.');
+                    window.location.href = 'dashboard.html'; // Or stay here showing "Pending"
+
+                } catch (error) {
+                    alert('Error: ' + error.message);
+                    btn.disabled = false;
+                    btn.textContent = 'Submit for Verification';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

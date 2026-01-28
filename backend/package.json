@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.10.0",
+    "axios": "^1.13.4",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.1",
@@ -20,14 +21,16 @@
     "joi": "^17.12.1",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
-    "winston": "^3.11.0",
+    "nodemailer": "^7.0.13",
+    "otp-generator": "^4.0.1",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.0"
+    "swagger-ui-express": "^5.0.0",
+    "winston": "^3.11.0"
   },
   "devDependencies": {
+    "eslint": "^8.56.0",
     "nodemon": "^3.0.3",
-    "prisma": "^5.10.0",
-    "eslint": "^8.56.0"
+    "prisma": "^5.10.0"
   },
   "engines": {
     "node": ">=18.0.0"
