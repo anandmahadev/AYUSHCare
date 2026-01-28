@@ -13,7 +13,7 @@ export default defineConfig({
     server: {
         proxy: {
             '/api': {
-                target: 'ayushcare.vercel.app',
+                target: 'http://localhost:3000',
                 changeOrigin: true,
                 secure: false,
             }
@@ -30,7 +30,6 @@ export default defineConfig({
                 practitioners: path.resolve(__dirname, 'practitioners.html'),
                 specialities: path.resolve(__dirname, 'specialities.html'),
                 technology: path.resolve(__dirname, 'technology.html'),
-                verification: path.resolve(__dirname, 'verification.html'),
             },
         },
     },

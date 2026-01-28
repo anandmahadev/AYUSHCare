@@ -1,4 +1,4 @@
-const API_URL = '/api';
+const API_URL = 'AIzaSyCeY6U02cFOEfnZLq27v9wFZ5quQvH22pU';
 
 class Api {
     static get token() {

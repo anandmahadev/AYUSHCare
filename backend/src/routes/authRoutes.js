@@ -4,10 +4,6 @@ const { protect } = require('../middlewares/authMiddleware');
 
 const router = express.Router();
 
-router.post('/send-otp', authController.sendOtp);
-router.post('/verify-otp', authController.verifyOtp);
-router.post('/google', authController.googleLogin);
-
 /**
  * @swagger
  * /auth/register:

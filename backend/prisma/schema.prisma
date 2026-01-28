@@ -39,18 +39,12 @@ enum ConsultationType {
   IN_PERSON
 }
 
-enum VerificationStatus {
-  PENDING
-  APPROVED
-  REJECTED
-}
-
 // Core User Model
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
-  password  String?   // Hashed (Optional for OTP users)
-  fullName  String?   // Make optional until profile completion? No, required for basic profile.
+  password  String   // Hashed
+  fullName  String
   phone     String?
   role      Role     @default(PATIENT)
   isActive  Boolean  @default(true)
@@ -62,22 +56,8 @@ model User {
   patientProfile      PatientProfile?
   sentMessages        Message[] @relation("SentMessages")
   receivedMessages    Message[] @relation("ReceivedMessages")
-  otpSessions         OtpSession[]
 
   @@map("users")
-}
-
-model OtpSession {
-  id        String   @id @default(uuid())
-  contact   String   // Email or Phone
-  otp       String   // Hashed
-  expiresAt DateTime
-  attempts  Int      @default(0)
-  userId    String?  // Optional link to user content
-  user      User?    @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
-
-  @@map("otp_sessions")
 }
 
 // Practitioner Specifics
@@ -91,8 +71,6 @@ model PractitionerProfile {
   experience    Int          // Years
   consultationFee Decimal    @db.Decimal(10, 2)
   isAvailable   Boolean      @default(true)
-  verificationStatus VerificationStatus @default(PENDING)
-  documents     Json?        // Array of URLs to uploaded docs
   
   // Schedule availability stored as JSON for flexibility
   // Format: { "monday": ["09:00-12:00", "14:00-17:00"], ... }
