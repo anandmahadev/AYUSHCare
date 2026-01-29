@@ -86,6 +86,91 @@ document.addEventListener('DOMContentLoaded', async function () {
         });
     });
 
+    // --- Booking Modal Logic ---
+    const bookBtn = document.getElementById('btn-book-appointment');
+    const bookingModal = document.getElementById('bookingModal');
+    const bookingForm = document.getElementById('bookingForm');
+    const toast = document.getElementById('toast');
+
+    if (bookBtn && bookingModal) {
+        bookBtn.addEventListener('click', () => {
+            bookingModal.classList.add('active');
+        });
+
+        // Close Modal Handlers
+        bookingModal.querySelectorAll('.close-modal, .close-modal-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                bookingModal.classList.remove('active');
+            });
+        });
+
+        bookingModal.addEventListener('click', (e) => {
+            if (e.target === bookingModal) bookingModal.classList.remove('active');
+        });
+
+        // Form Submission
+        if (bookingForm) {
+            bookingForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const submitBtn = bookingForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Booking...';
+                submitBtn.disabled = true;
+
+                try {
+                    const formData = new FormData(bookingForm);
+                    const data = Object.fromEntries(formData.entries());
+
+                    // API Call
+                    await Api.post('/appointments', data);
+
+                    // Success Feedback
+                    bookingModal.classList.remove('active');
+                    bookingForm.reset();
+
+                    showToast('Appointment booked successfully!');
+
+                    // Refresh Data
+                    await loadDashboardData(user.role);
+
+                } catch (error) {
+                    console.error('Booking failed:', error);
+                    showToast('Failed to book appointment. Please try again.');
+                } finally {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }
+            });
+        }
+    }
+
+    // --- Notification Logic ---
+    const notifBtn = document.getElementById('btn-notifications');
+    if (notifBtn) {
+        notifBtn.addEventListener('click', () => {
+            // Scroll to notifications card if in view
+            const notifCard = document.querySelector('.notifications-list');
+            if (notifCard) {
+                notifCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                // Highlight effect
+                notifCard.parentElement.style.transition = 'box-shadow 0.3s ease';
+                notifCard.parentElement.style.boxShadow = '0 0 0 4px rgba(16, 185, 129, 0.2)';
+                setTimeout(() => {
+                    notifCard.parentElement.style.boxShadow = '';
+                }, 1500);
+            } else {
+                showToast('You have 3 unread notifications');
+            }
+        });
+    }
+
+    function showToast(message) {
+        if (!toast) return;
+        toast.textContent = message;
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 3000);
+    }
+
     // 3. Fetch Real Data
     try {
         await loadDashboardData(user.role);

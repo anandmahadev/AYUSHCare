@@ -162,6 +162,17 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.insertAdjacentHTML('beforeend', loaderHTML);
     const pageLoader = document.getElementById('pageLoader');
 
+    // Live Chat Widget
+    const chatHTML = `
+        <div class="live-chat-widget">
+            <div class="chat-bubble">👋 Need help? Chat with us!</div>
+            <button class="chat-button" aria-label="Open Live Chat">
+                <span class="chat-icon">💬</span>
+            </button>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', chatHTML);
+
     // Handle internal links
     document.addEventListener('click', function (e) {
         const link = e.target.closest('a');
@@ -187,7 +198,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Small delay for visual feedback then navigate
             setTimeout(() => {
                 window.location.href = href;
-            }, 400);
+            }, 200); // Reduced duration
         }
     });
 

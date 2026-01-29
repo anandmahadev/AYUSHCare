@@ -78,7 +78,7 @@
                     <div class="header-search">
                         <input type="search" placeholder="Search patients, appointments..." class="search-input">
                     </div>
-                    <button class="header-btn">
+                    <button class="header-btn" id="btn-notifications">
                         <span class="btn-icon">🔔</span>
                         <span class="notification-badge">3</span>
                     </button>
@@ -246,7 +246,7 @@
                                     <span class="qa-icon">📝</span>
                                     <span class="qa-text">New Prescription</span>
                                 </button>
-                                <button class="quick-action-btn">
+                                <button class="quick-action-btn" id="btn-book-appointment">
                                     <span class="qa-icon">📅</span>
                                     <span class="qa-text">Book Appointment</span>
                                 </button>
@@ -385,6 +385,43 @@
     </div>
     </main>
     </div>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Book New Appointment</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label class="form-label">Patient Name</label>
+                        <input type="text" class="form-input" name="patientName" required
+                            placeholder="Enter patient name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date & Time</label>
+                        <input type="datetime-local" class="form-input" name="scheduledAt" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Type</label>
+                        <select class="form-input" name="type">
+                            <option value="VIDEO">Video Consultation</option>
+                            <option value="IN_PERSON">In-Person Visit</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary close-modal-btn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Confirm Booking</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">Appointment Booked Successfully!</div>
 
     <script type="module" src="scripts/mockApi.js"></script>
     <script type="module" src="scripts/api.js"></script>

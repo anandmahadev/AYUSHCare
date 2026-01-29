@@ -1,13 +1,12 @@
 // Mock API Implementation for Demo Mode (Backend-less)
 
-const MockDB = {
-    // Initial Data
+// Initialize MockDB from LocalStorage or use defaults
+const defaultDB = {
     users: [
         { id: 'u1', email: 'admin@ayushcare.com', password: 'password123', fullName: 'System Admin', role: 'ADMIN' },
         { id: 'u2', email: 'ayurveda@demo.com', password: 'password123', fullName: 'Dr. Sharma', role: 'PRACTITIONER' },
         { id: 'u3', email: 'patient@demo.com', password: 'password123', fullName: 'Rajesh Kumar', role: 'PATIENT' }
     ],
-
     appointments: [
         {
             id: 'a1',
@@ -36,6 +35,17 @@ const MockDB = {
         }
     ]
 };
+
+const loadDB = () => {
+    const saved = localStorage.getItem('ayush_mock_db');
+    return saved ? JSON.parse(saved) : defaultDB;
+};
+
+const saveDB = (db) => {
+    localStorage.setItem('ayush_mock_db', JSON.stringify(db));
+};
+
+const MockDB = loadDB();
 
 // Mock Server Interface
 class MockApiHandler {
@@ -66,18 +76,31 @@ class MockApiHandler {
                 ...body
             };
             MockDB.users.push(newUser);
+            saveDB(MockDB);
             return { status: 'success', data: { user: newUser } };
         }
 
         // --- APPOINTMENT ROUTES ---
-        if (endpoint === '/appointments' && method === 'GET') {
-            // Simplified: Return all appointments for demo
-            // In real logic we'd filter by role, but for demo seeing data is better
-            return {
-                status: 'success',
-                results: MockDB.appointments.length,
-                data: { appointments: MockDB.appointments }
-            };
+        if (endpoint === '/appointments') {
+            if (method === 'GET') {
+                return {
+                    status: 'success',
+                    results: MockDB.appointments.length,
+                    data: { appointments: MockDB.appointments }
+                };
+            }
+            if (method === 'POST') {
+                const newAppt = {
+                    id: `a${Date.now()}`,
+                    status: 'PENDING',
+                    practitioner: { user: { fullName: 'Dr. Sharma' }, id: 'p1' }, // Default for demo
+                    patient: { user: { fullName: body.patientName || 'Guest User' }, id: 'guest' },
+                    ...body
+                };
+                MockDB.appointments.push(newAppt);
+                saveDB(MockDB);
+                return { status: 'success', data: { appointment: newAppt } };
+            }
         }
 
         // --- PRACTITIONER ROUTES ---
