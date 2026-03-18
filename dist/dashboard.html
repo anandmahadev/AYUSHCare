@@ -10,11 +10,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/assets/dashboard-B--xo23Q.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/main-C4_tj5mD.js">
-  <link rel="modulepreload" crossorigin href="/assets/api-DgY0GA1A.js">
-  <link rel="stylesheet" crossorigin href="/assets/main-BYk_ymKj.css">
-  <link rel="stylesheet" crossorigin href="/assets/dashboard-DAD8eBIz.css">
+  <script type="module" crossorigin src="/assets/dashboard-D4JZMTfa.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/main-DaWqDtlc.js">
+  <link rel="modulepreload" crossorigin href="/assets/api-rIn9Dnrz.js">
+  <link rel="stylesheet" crossorigin href="/assets/main-BPAvCb_N.css">
+  <link rel="stylesheet" crossorigin href="/assets/dashboard-Cf7C5SOD.css">
 </head>
 
 <body class="dashboard-body">
@@ -81,7 +81,7 @@
                     <div class="header-search">
                         <input type="search" placeholder="Search patients, appointments..." class="search-input">
                     </div>
-                    <button class="header-btn">
+                    <button class="header-btn" id="btn-notifications">
                         <span class="btn-icon">🔔</span>
                         <span class="notification-badge">3</span>
                     </button>
@@ -249,7 +249,7 @@
                                     <span class="qa-icon">📝</span>
                                     <span class="qa-text">New Prescription</span>
                                 </button>
-                                <button class="quick-action-btn">
+                                <button class="quick-action-btn" id="btn-book-appointment">
                                     <span class="qa-icon">📅</span>
                                     <span class="qa-text">Book Appointment</span>
                                 </button>
@@ -388,6 +388,43 @@
     </div>
     </main>
     </div>
+
+    <!-- Booking Modal -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Book New Appointment</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="bookingForm">
+                    <div class="form-group">
+                        <label class="form-label">Patient Name</label>
+                        <input type="text" class="form-input" name="patientName" required
+                            placeholder="Enter patient name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date & Time</label>
+                        <input type="datetime-local" class="form-input" name="scheduledAt" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Type</label>
+                        <select class="form-input" name="type">
+                            <option value="VIDEO">Video Consultation</option>
+                            <option value="IN_PERSON">In-Person Visit</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary close-modal-btn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Confirm Booking</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">Appointment Booked Successfully!</div>
 
 </body>
 
