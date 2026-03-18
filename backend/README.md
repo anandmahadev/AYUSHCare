@@ -46,6 +46,10 @@ Enterprise-grade RESTful API for the AYUSHCare platform, built with Node.js, Exp
 Access the full Swagger documentation at:
 `http://localhost:3000/api-docs`
 
+### System Health
+Monitor service status and telemetry:
+`GET /health` - Returns uptime, environment, and current timestamp.
+
 ## Core Endpoints
 
 ### Auth
