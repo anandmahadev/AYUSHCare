@@ -1,5 +1,9 @@
 const API_URL = 'https://api.ayushcare.com/v1';
 
+/**
+ * Professional frontend API utility for AYUSHCare platform.
+ * Handles unified requests, token management, and mock data interception.
+ */
 class Api {
     static get token() {
         return localStorage.getItem('token');
@@ -15,6 +19,12 @@ class Api {
         return headers;
     }
 
+    /**
+     * Executes a network request to the AYUSHCare backend.
+     * @param {string} endpoint - The API endpoint relative to base URL.
+     * @param {object} options - Fetch options including method, body, etc.
+     * @returns {Promise<any>} Response data or null if unauthorized.
+     */
     static async request(endpoint, options = {}) {
         // --- MOCK MODE INTERCEPTOR ---
         if (window.USE_MOCK_API && window.MockApiHandler) {
