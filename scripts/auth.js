@@ -43,6 +43,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
 
+        // --- VALIDATION LAYER ---
+        if (!Validation.isValidEmail(email)) {
+            showError('Please enter a valid email address.');
+            return;
+        }
+        if (!Validation.isStrongPassword(password)) {
+            showError('Password must be at least 8 characters long.');
+            return;
+        }
+        // ------------------------
+
+        function showError(msg) {
+            errorMessage.textContent = msg;
+            errorMessage.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.textContent = isRegister ? 'Register' : 'Sign In';
+        }
+
         try {
             let response;
 
