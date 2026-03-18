@@ -1,4 +1,4 @@
-const API_URL = 'AIzaSyCeY6U02cFOEfnZLq27v9wFZ5quQvH22pU';
+const API_URL = 'https://api.ayushcare.com/v1';
 
 class Api {
     static get token() {
