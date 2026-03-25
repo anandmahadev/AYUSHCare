@@ -2,14 +2,16 @@
 
 Enterprise-grade RESTful API for the AYUSHCare platform, built with Node.js, Express, and PostgreSQL (Prisma).
 
+## Project Overview
+AYUSHCare is an integrated healthcare platform designed to streamline the interaction between practitioners and patients using modern web technologies. Our goal is to provide a secure, scalable, and intuitive system for managing appointments, patient records, and practitioners' profiles.
+
 ## Tech Stack
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **Database**: PostgreSQL
-- **ORM**: Prisma
-- **Auth**: JWT & BCrypt
-- **Validation**: Joi (Integrated)
-- **Documentation**: Swagger UI
+- **Backend**: Node.js, Express.js (RESTful API)
+- **Database**: PostgreSQL with Prisma ORM
+- **Authentication**: JWT (JSON Web Tokens) with Bcrypt password hashing
+- **Frontend**: Next.js (planned/ongoing)
+- **Styling**: Vanilla CSS with modern design patterns
+- **Documentation**: Swagger/OpenAPI 3.0
 
 ## Setup & Installation
 
