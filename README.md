@@ -29,38 +29,32 @@ AYUSHCare is an enterprise-grade healthcare SaaS platform designed to streamline
 5. **Homeopathy** - Like cures like principle
 6. **Naturopathy** - Nature's healing power
 
-## Technology Stack
+### Technology Stack
 
-- **Frontend**: HTML5, CSS3 (Vanilla), JavaScript (ES6+)
-- **Typography**: Inter font family from Google Fonts
-- **Design System**: Custom CSS variables for consistent theming
-- **Architecture**: Component-based, modular structure
-- **Responsive**: Mobile-first design approach
-- **Accessibility**: WCAG 2.1 compliant
-- **SEO**: Optimized meta tags and semantic HTML
+### Frontend
+- **Framework**: React 18+ with TypeScript
+- **State Management**: React Context / Hooks
+- **Styling**: Tailwind CSS & Framer Motion
+- **Icons**: Lucide React
+- **Build Tool**: Vite
+
+### Backend
+- **Core**: Node.js & Express.js
+- **Database**: PostgreSQL with Prisma ORM
+- **Documentation**: Swagger/OpenAPI 3.0
+- **Security**: Helmet, CORS, Rate Limiting, JWT
 
 ## Project Structure
 
 ```
 AYUSH/
-├── index.html              # Landing page
-├── practitioners.html      # For practitioners page
-├── patients.html          # For patients page
-├── specialities.html      # AYUSH specialities overview
-├── technology.html        # Technology & security page
-├── contact.html           # Contact & demo request
-├── dashboard.html         # Dashboard (mock functional)
-├── styles/
-│   ├── main.css          # Core styles & design system
-│   ├── practitioners.css  # Practitioners page styles
-│   ├── specialities.css   # Specialities page styles
-│   ├── technology.css     # Technology page styles
-│   ├── contact.css       # Contact page styles
-│   └── dashboard.css     # Dashboard styles
-└── scripts/
-    ├── main.js           # Main JavaScript
-    ├── contact.js        # Contact form handling
-    └── dashboard.js      # Dashboard interactions
+├── backend/               # Express.js server
+│   ├── prisma/            # Database schema
+│   └── src/               # Backend source code
+├── components/            # React components
+├── lib/                   # Shared utilities
+├── styles/                # Global CSS
+└── public/                # Static assets
 ```
 
 ## Pages
@@ -135,8 +129,9 @@ AYUSH/
 ## Getting Started
 
 ### Prerequisites
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- No build tools required - pure HTML/CSS/JS
+- Node.js (v18 or higher)
+- PostgreSQL (for local database)
+- npm or yarn
 
 ### Installation
 
