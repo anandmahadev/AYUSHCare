@@ -4,7 +4,10 @@ const { PrismaClient } = require('@prisma/client');
 const logger = require('./utils/logger');
 
 const prisma = new PrismaClient();
+const initCronJobs = require('./services/cronService');
 const PORT = process.env.PORT || 3000;
+
+initCronJobs();
 
 // Database Connection Check
 async function checkDatabaseConnection() {
