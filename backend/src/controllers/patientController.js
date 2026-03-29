@@ -62,7 +62,7 @@ exports.logSymptom = async (req, res, next) => {
         const log = await prisma.symptomLog.create({
             data: {
                 patientId: patientHandler.id,
-                sypmtom: symptom,
+                symptom: symptom,
                 severity: Number(severity),
                 notes
             }
@@ -71,6 +71,29 @@ exports.logSymptom = async (req, res, next) => {
         res.status(201).json({
             status: 'success',
             data: { log }
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+// Get symptom logs for the logged-in patient
+exports.getSymptomLogs = async (req, res, next) => {
+    try {
+        const patientHandler = await prisma.patientProfile.findUnique({
+            where: { userId: req.user.id }
+        });
+
+        const logs = await prisma.symptomLog.findMany({
+            where: { patientId: patientHandler.id },
+            orderBy: { createdAt: 'desc' },
+            take: 50
+        });
+
+        res.status(200).json({
+            status: 'success',
+            results: logs.length,
+            data: { logs }
         });
     } catch (error) {
         next(error);
