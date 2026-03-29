@@ -85,3 +85,37 @@ exports.updateStatus = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.cancelAppointment = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        const appointment = await prisma.appointment.findUnique({ where: { id } });
+        if (!appointment) {
+            return next(new AppError('Appointment not found', 404));
+        }
+
+        // Only allow patient who booked or the practitioner to cancel
+        const profile =
+            req.user.role === 'PATIENT'
+                ? await prisma.patientProfile.findUnique({ where: { userId: req.user.id } })
+                : await prisma.practitionerProfile.findUnique({ where: { userId: req.user.id } });
+
+        const isOwner =
+            (req.user.role === 'PATIENT' && appointment.patientId === profile.id) ||
+            (req.user.role === 'PRACTITIONER' && appointment.practitionerId === profile.id);
+
+        if (!isOwner) {
+            return next(new AppError('You are not authorized to cancel this appointment', 403));
+        }
+
+        const updated = await prisma.appointment.update({
+            where: { id },
+            data: { status: 'CANCELLED' }
+        });
+
+        res.status(200).json({ status: 'success', data: { appointment: updated } });
+    } catch (error) {
+        next(error);
+    }
+};
