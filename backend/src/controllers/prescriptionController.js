@@ -72,3 +72,28 @@ exports.getPatientPrescriptions = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.deletePrescription = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        const prescription = await prisma.prescription.findUnique({ where: { id } });
+        if (!prescription) {
+            return next(new AppError('Prescription not found', 404));
+        }
+
+        const practitioner = await prisma.practitionerProfile.findUnique({
+            where: { userId: req.user.id }
+        });
+
+        if (!practitioner || prescription.practitionerId !== practitioner.id) {
+            return next(new AppError('Only the issuing practitioner can delete this prescription', 403));
+        }
+
+        await prisma.prescription.delete({ where: { id } });
+
+        res.status(204).json({ status: 'success', data: null });
+    } catch (error) {
+        next(error);
+    }
+};
