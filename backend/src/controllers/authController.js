@@ -40,3 +40,16 @@ exports.getMe = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.deleteAccount = async (req, res, next) => {
+    try {
+        await authService.deleteAccount(req.user.id);
+
+        res.status(204).json({
+            status: 'success',
+            data: null
+        });
+    } catch (error) {
+        next(error);
+    }
+};
