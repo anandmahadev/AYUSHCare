@@ -2,6 +2,7 @@ node_modules
 .env
 backend/node_modules
 backend/.env
+.env.local
 backend/logs
 .DS_Store
 *.log
