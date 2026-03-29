@@ -87,6 +87,10 @@ class Api {
         });
     }
 
+    static async delete(endpoint) {
+        return this.request(endpoint, { method: 'DELETE' });
+    }
+
     static logout() {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
