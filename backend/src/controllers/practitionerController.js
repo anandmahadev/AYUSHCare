@@ -19,8 +19,14 @@ exports.getAllPractitioners = async (req, res, next) => {
             };
         }
 
-        // Basic search filtering logic would go here
-        // Prisma text search or reliable 'contains' depends on DB config
+        if (search) {
+            where.user = {
+                fullName: {
+                    contains: search,
+                    mode: 'insensitive'
+                }
+            };
+        }
 
         const practitioners = await prisma.practitionerProfile.findMany({
             where,
