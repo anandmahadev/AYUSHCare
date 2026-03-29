@@ -159,6 +159,41 @@ cd AYUSH
    - Home: `http://localhost:8000/index.html`
    - Dashboard: `http://localhost:8000/dashboard.html`
 
+
+## 🛠️ Local Development
+
+### Prerequisites
+- Node.js (v18+)
+- PostgreSQL (or any Prisma-supported DB)
+- npm or yarn
+
+### Setup
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   cd backend && npm install
+   ```
+3. Configure environment variables:
+   - Copy `.env.example` to `.env` in the `backend` folder.
+   - Update `DATABASE_URL` and `JWT_SECRET`.
+4. Run Database Migrations:
+   ```bash
+   cd backend
+   npx prisma generate
+   npx prisma db push
+   ```
+5. Start development servers:
+   - **Backend**: `cd backend && npm run dev`
+   - **Frontend**: `npm run dev` (Vite)
+
+## 🗃️ Database Schema
+The project uses Prisma ORM. You can find the schema in `backend/prisma/schema.prisma`.
+To view the database UI:
+```bash
+npx prisma studio
+```
+
 ## Browser Support
 
 - Chrome (latest)
