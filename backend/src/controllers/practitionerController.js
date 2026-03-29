@@ -94,3 +94,23 @@ exports.getPractitioner = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.toggleAvailability = async (req, res, next) => {
+    try {
+        const profile = await prisma.practitionerProfile.findUnique({
+            where: { userId: req.user.id }
+        });
+
+        const updated = await prisma.practitionerProfile.update({
+            where: { id: profile.id },
+            data: { isAvailable: !profile.isAvailable }
+        });
+
+        res.status(200).json({
+            status: 'success',
+            data: { isAvailable: updated.isAvailable }
+        });
+    } catch (error) {
+        next(error);
+    }
+};
