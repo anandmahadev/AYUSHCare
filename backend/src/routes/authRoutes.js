@@ -69,5 +69,6 @@ router.post('/register', authController.register);
 router.post('/login', authController.login);
 
 router.get('/me', protect, authController.getMe);
+router.delete('/me', protect, authController.deleteAccount);
 
 module.exports = router;
