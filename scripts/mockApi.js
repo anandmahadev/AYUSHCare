@@ -33,6 +33,23 @@ const defaultDB = {
             status: 'CONFIRMED',
             type: 'VIDEO'
         }
+    ],
+    prescriptions: [
+        {
+            id: 'rx1',
+            practitioner: { user: { fullName: 'Dr. Sharma' } },
+            patientId: 'pat1',
+            diagnosis: 'Vata imbalance with chronic fatigue',
+            medicines: [
+                { name: 'Ashwagandha', dosage: '500mg twice daily after meals' },
+                { name: 'Triphala', dosage: '1 tsp with warm water at bedtime' }
+            ],
+            yogaInstructions: 'Gentle Surya Namaskar, 5 rounds every morning',
+            dietaryAdvice: 'Avoid cold, dry, and raw foods. Prefer warm, oily, and nourishing meals.',
+            lifestyleAdvice: 'Sleep before 10 PM. Oil massage (Abhyanga) twice a week.',
+            notes: 'Follow-up in 4 weeks.',
+            createdAt: new Date(new Date().setDate(new Date().getDate() - 7)).toISOString()
+        }
     ]
 };
 
